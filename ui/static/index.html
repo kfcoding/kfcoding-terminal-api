@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="input"> </input>
+<button onclick="send()">send</button>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script>
+    var input;
+    var sock;
+    $(document).ready(function () {
+        input = document.getElementById("output");
+        getId();
+    });
+
+    function getId() {
+        $.ajax({
+            "url": "api/v1/pod/default/shell-demo/shell/nginx",
+            "method": "GET"
+        }).done(function (response) {
+            console.log(response.id);
+            connectWS(response);
+        });
+    }
+
+    function send() {
+        var str = document.getElementById('input').value + "\r";
+        sock.send(JSON.stringify({'Op': 'stdin', 'Data': str}));
+    }
+
+    function connectWS(response) {
+        sock = new SockJS('api/sockjs?' + response.id);
+        sock.onopen = function () {
+            console.log('open');
+            sock.send(JSON.stringify({'Op': 'bind', 'SessionID': response.id}));
+            sock.send(JSON.stringify({'Op': 'resize', 'Cols': 154, 'Rows': 39}));
+        };
+
+        sock.onmessage = function (evt) {
+            console.log();
+            let msg = JSON.parse(evt.data);
+            switch (msg['Op']) {
+                case 'stdout':
+                    console.log(msg['Data']);
+                    break;
+                case 'toast':
+                    console.log(msg['Data']);
+                    break;
+                default:
+                    console.error('Unexpected message type:', msg);
+            }
+        };
+
+        sock.onclose = function () {
+            console.log('close');
+        };
+    }
+
+</script>
+</html>
+
