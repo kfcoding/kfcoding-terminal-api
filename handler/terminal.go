@@ -16,6 +16,7 @@ import (
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/remotecommand"
+	"sync"
 )
 
 // PtyHandler is what remotecommand expects from a pty
@@ -50,10 +51,8 @@ type TerminalMessage struct {
 // TerminalSize handles pty->process resize events
 // Called in a loop from remotecommand as long as the process is running
 func (t TerminalSession) Next() *remotecommand.TerminalSize {
-	log.Println("Next()")
 	select {
 	case size := <-t.sizeChan:
-		log.Println("Next(): ", &size)
 		return &size
 	}
 }
@@ -61,7 +60,6 @@ func (t TerminalSession) Next() *remotecommand.TerminalSize {
 // Read handles pty->process messages (stdin, resize)
 // Called in a loop from remotecommand as long as the process is running
 func (t TerminalSession) Read(p []byte) (int, error) {
-	log.Println("Read(): ", string(p))
 	m, err := t.sockJSSession.Recv()
 	if err != nil {
 		return 0, err
@@ -86,7 +84,6 @@ func (t TerminalSession) Read(p []byte) (int, error) {
 // Write handles process->pty stdout
 // Called from remotecommand whenever there is any output
 func (t TerminalSession) Write(p []byte) (int, error) {
-	log.Println("Write(): ", string(p))
 	msg, err := json.Marshal(TerminalMessage{
 		Op:   "stdout",
 		Data: string(p),
@@ -104,7 +101,6 @@ func (t TerminalSession) Write(p []byte) (int, error) {
 // Toast can be used to send the user any OOB messages
 // hterm puts these in the center of the terminal
 func (t TerminalSession) Toast(p string) error {
-	log.Println("Toast(): ", p)
 	msg, err := json.Marshal(TerminalMessage{
 		Op:   "toast",
 		Data: p,
@@ -123,18 +119,20 @@ func (t TerminalSession) Toast(p string) error {
 // Can happen if the process exits or if there is an error starting up the process
 // For now the status code is unused and reason is shown to the user (unless "")
 func (t TerminalSession) Close(status uint32, reason string) {
-	log.Print("Close(): ", reason)
 	t.sockJSSession.Close(status, reason)
-	log.Println("fater close", len(terminalSessions))
+
+	lock.Lock()
+	delete(terminalSessions, t.id)
+	lock.Unlock()
 }
 
 // terminalSessions stores a map of all TerminalSession objects
 // FIXME: this structure needs locking
 var terminalSessions = make(map[string]TerminalSession)
+var lock sync.Mutex
 
 // handleTerminalSession is Called by net/http for any new /api/sockjs connections
 func handleTerminalSession(session sockjs.Session) {
-	log.Println("handleTerminalSession")
 	var (
 		buf             string
 		err             error
@@ -183,7 +181,6 @@ func CreateAttachHandler(path string) http.Handler {
 // startProcess is called by handleAttach
 // Executed cmd in the container specified in request and connects it up with the ptyHandler (a session)
 func startProcess(k8sClient kubernetes.Interface, cfg *rest.Config, request *restful.Request, cmd []string, ptyHandler PtyHandler) error {
-	log.Print("startProcess()")
 	namespace := request.PathParameter("namespace")
 	podName := request.PathParameter("pod")
 	containerName := request.PathParameter("container")
@@ -253,8 +250,6 @@ func WaitForTerminal(k8sClient kubernetes.Interface, cfg *rest.Config, request *
 
 	select {
 	case <-terminalSessions[sessionId].bound:
-
-		log.Println("WaitForTerminal(): ", "terminalSessions[sessionId].bound")
 
 		close(terminalSessions[sessionId].bound)
 

@@ -6,7 +6,6 @@ import (
 	clientapi "github.com/kfcoding-shell-server/client/api"
 	kdErrors "github.com/kfcoding-shell-server/errors"
 	"k8s.io/client-go/tools/remotecommand"
-	"log"
 )
 
 type APIHandler struct {
@@ -19,7 +18,9 @@ type TerminalResponse struct {
 
 func CreateHTTPAPIHandler(cManager clientapi.ClientManager) (http.Handler, error) {
 
-	apiHandler := APIHandler{cManager: cManager}
+	apiHandler := APIHandler{
+		cManager: cManager,
+	}
 	wsContainer := restful.NewContainer()
 	wsContainer.EnableContentEncoding(true)
 
@@ -40,8 +41,6 @@ func CreateHTTPAPIHandler(cManager clientapi.ClientManager) (http.Handler, error
 
 func (apiHandler *APIHandler) handleExecShell(request *restful.Request, response *restful.Response) {
 
-	log.Println("before", len(terminalSessions))
-
 	sessionId, err := genTerminalSessionId()
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -60,13 +59,13 @@ func (apiHandler *APIHandler) handleExecShell(request *restful.Request, response
 		return
 	}
 
+	lock.Lock()
 	terminalSessions[sessionId] = TerminalSession{
 		id:       sessionId,
 		bound:    make(chan error),
 		sizeChan: make(chan remotecommand.TerminalSize),
 	}
-
-	log.Println("after", len(terminalSessions))
+	lock.Unlock()
 
 	go WaitForTerminal(k8sClient, cfg, request, sessionId)
 
