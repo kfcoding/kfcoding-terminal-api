@@ -125,6 +125,7 @@ func (t TerminalSession) Toast(p string) error {
 func (t TerminalSession) Close(status uint32, reason string) {
 	log.Print("Close(): ", reason)
 	t.sockJSSession.Close(status, reason)
+	log.Println("fater close", len(terminalSessions))
 }
 
 // terminalSessions stores a map of all TerminalSession objects
@@ -163,7 +164,14 @@ func handleTerminalSession(session sockjs.Session) {
 	}
 
 	terminalSession.sockJSSession = session
+
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 	terminalSession.bound <- nil
+
 	terminalSessions[msg.SessionID] = terminalSession
 }
 

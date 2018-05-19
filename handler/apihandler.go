@@ -6,28 +6,17 @@ import (
 	clientapi "github.com/kfcoding-shell-server/client/api"
 	kdErrors "github.com/kfcoding-shell-server/errors"
 	"k8s.io/client-go/tools/remotecommand"
+	"log"
 )
 
-const (
-	// RequestLogString is a template for request log message.
-	RequestLogString = "[%s] Incoming %s %s %s request from %s: %s"
-
-	// ResponseLogString is a template for response log message.
-	ResponseLogString = "[%s] Outcoming response to %s with %d status code"
-)
-
-// APIHandler is a representation of API handler. Structure contains clientapi, Heapster clientapi and clientapi configuration.
 type APIHandler struct {
 	cManager clientapi.ClientManager
 }
 
-// TerminalResponse is sent by handleExecShell. The Id is a random session id that binds the original REST request and the SockJS connection.
-// Any clientapi in possession of this Id can hijack the terminal session.
 type TerminalResponse struct {
 	Id string `json:"id"`
 }
 
-// CreateHTTPAPIHandler creates a new HTTP handler that handles all requests to the API of the backend.
 func CreateHTTPAPIHandler(cManager clientapi.ClientManager) (http.Handler, error) {
 
 	apiHandler := APIHandler{cManager: cManager}
@@ -49,8 +38,10 @@ func CreateHTTPAPIHandler(cManager clientapi.ClientManager) (http.Handler, error
 	return wsContainer, nil
 }
 
-// Handles execute shell API call
 func (apiHandler *APIHandler) handleExecShell(request *restful.Request, response *restful.Response) {
+
+	log.Println("before", len(terminalSessions))
+
 	sessionId, err := genTerminalSessionId()
 	if err != nil {
 		kdErrors.HandleInternalError(response, err)
@@ -74,6 +65,12 @@ func (apiHandler *APIHandler) handleExecShell(request *restful.Request, response
 		bound:    make(chan error),
 		sizeChan: make(chan remotecommand.TerminalSize),
 	}
+
+	log.Println("after", len(terminalSessions))
+
 	go WaitForTerminal(k8sClient, cfg, request, sessionId)
+
+	response.Header().Set("Access-Control-Allow-Origin", "*")
+
 	response.WriteHeaderAndEntity(http.StatusOK, TerminalResponse{Id: sessionId})
 }

@@ -15,7 +15,7 @@ func main() {
 
 	http.Handle("/api/", apiHandler)
 	http.Handle("/api/sockjs/", handler.CreateAttachHandler("/api/sockjs"))
-	http.Handle("/", http.FileServer(http.Dir("/home/wsl/Go/src/github.com/kubernetes/dashboard/src/app/backend/ui/static/")))
+	http.Handle("/", http.FileServer(http.Dir("/Users/wsl/Go/src/github.com/kfcoding-shell-server/ui/static/")))
 
 	go func() { log.Fatal(http.ListenAndServe("0.0.0.0:9090", nil)) }()
 	select {}
