@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 	"github.com/emicklei/go-restful"
-	clientapi "github.com/kfcoding-shell-server/client/api"
-	kdErrors "github.com/kfcoding-shell-server/errors"
+	clientapi "github.com/websocket-server-shell/client/api"
+	kdErrors "github.com/websocket-server-shell/errors"
 	"k8s.io/client-go/tools/remotecommand"
 )
 

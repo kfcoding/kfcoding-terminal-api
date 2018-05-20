@@ -3,8 +3,8 @@ package client
 import (
 	"fmt"
 
-	"github.com/kfcoding-shell-server/api"
-	clientapi "github.com/kfcoding-shell-server/client/api"
+	"github.com/websocket-server-shell/api"
+	clientapi "github.com/websocket-server-shell/client/api"
 	"k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	restclient "k8s.io/client-go/rest"

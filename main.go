@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"github.com/kfcoding-shell-server/handler"
-	"github.com/kfcoding-shell-server/client"
+	"github.com/websocket-server-shell/handler"
+	"github.com/websocket-server-shell/client"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 
 	http.Handle("/api/", apiHandler)
 	http.Handle("/api/sockjs/", handler.CreateAttachHandler("/api/sockjs"))
-	//http.Handle("/", http.FileServer(http.Dir("/home/wsl/Go/src/github.com/kfcoding-shell-server/ui/static/")))
+	//http.Handle("/", http.FileServer(http.Dir("/home/wsl/Go/src/github.com/websocket-server-shell/ui/static/")))
 
 	go func() { log.Fatal(http.ListenAndServe("0.0.0.0:9090", nil)) }()
 	select {}
