@@ -20,7 +20,7 @@
 
     function getId() {
         $.ajax({
-            "url": "http://120.132.94.141:9090/api/v1/pod/default/shell-demo/shell/nginx",
+            "url": "http://120.132.94.141:9090/api/v1/pod/kfcoding-alpha/shell-demo/shell/nginx",
             "method": "GET"
         }).done(function (response) {
             console.log(response.id);
@@ -37,7 +37,7 @@
         sock = new SockJS('http://120.132.94.141:9090/api/sockjs?' + response.id);
         sock.onopen = function () {
             console.log('open');
-            sock.send(JSON.stringify({'Op': 'bind', 'SessionID': "bf1dbb0415e2b0078650fb6dd4c57890"}));
+            sock.send(JSON.stringify({'Op': 'bind', 'SessionID': response.id}));
             sock.send(JSON.stringify({'Op': 'resize', 'Cols': 154, 'Rows': 39}));
         };
 

@@ -60,7 +60,12 @@ func (t TerminalSession) Next() *remotecommand.TerminalSize {
 // Read handles pty->process messages (stdin, resize)
 // Called in a loop from remotecommand as long as the process is running
 func (t TerminalSession) Read(p []byte) (int, error) {
+
+	//log.Println("read", string(p))
+
 	m, err := t.sockJSSession.Recv()
+
+	//log.Println("read2 ", m)
 	if err != nil {
 		return 0, err
 	}
@@ -84,23 +89,30 @@ func (t TerminalSession) Read(p []byte) (int, error) {
 // Write handles process->pty stdout
 // Called from remotecommand whenever there is any output
 func (t TerminalSession) Write(p []byte) (int, error) {
-	msg, err := json.Marshal(TerminalMessage{
-		Op:   "stdout",
-		Data: string(p),
-	})
-	if err != nil {
+	//log.Println("write", string(p))
+
+	if err := t.sockJSSession.Send(string(p)); err != nil {
 		return 0, err
 	}
 
-	if err = t.sockJSSession.Send(string(msg)); err != nil {
-		return 0, err
-	}
+	//msg, err := json.Marshal(TerminalMessage{
+	//	Op:   "stdout",
+	//	Data: string(p),
+	//})
+	//if err != nil {
+	//	return 0, err
+	//}
+
+	//if err = t.sockJSSession.Send(string(msg)); err != nil {
+	//	return 0, err
+	//}
 	return len(p), nil
 }
 
 // Toast can be used to send the user any OOB messages
 // hterm puts these in the center of the terminal
 func (t TerminalSession) Toast(p string) error {
+	//log.Println("toast", p)
 	msg, err := json.Marshal(TerminalMessage{
 		Op:   "toast",
 		Data: p,
