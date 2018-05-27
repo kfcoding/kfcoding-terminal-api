@@ -17,6 +17,8 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/remotecommand"
 	"sync"
+	"io/ioutil"
+	"github.com/websocket-server-shell/config"
 )
 
 // PtyHandler is what remotecommand expects from a pty
@@ -32,6 +34,7 @@ type TerminalSession struct {
 	bound         chan error
 	sockJSSession sockjs.Session
 	sizeChan      chan remotecommand.TerminalSize
+	pod           string
 }
 
 // TerminalMessage is the messaging protocol between ShellController and TerminalSession.
@@ -136,6 +139,16 @@ func (t TerminalSession) Close(status uint32, reason string) {
 	lock.Lock()
 	delete(terminalSessions, t.id)
 	lock.Unlock()
+
+	// call api to delete container
+	url := config.API_SERVER_ADDR + "/cloudware/deleteContainer"
+	req, _ := http.NewRequest("DELETE", url, nil)
+	req.Header.Add("podName", t.pod)
+	req.Header.Add("type", "1")
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	fmt.Println(string(body))
 }
 
 // terminalSessions stores a map of all TerminalSession objects

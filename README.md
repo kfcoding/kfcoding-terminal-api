@@ -1,23 +1,15 @@
-## kfcoding shell server
+## get terminal websocket address
 
-#### 1. 安装
+1. 请求地址
 
-#### 2. 接口说明
-
-获得websocket地址分两个步骤：
-
-1. 请求token
-- url: api/v1/pod/{namespace}/{pod-name}/shell/{container-name}
-- method: GET
-- response格式: {"id" : "token"}
-如：{
-      "id": "42efbc2fee67b82e2278850593965255"
-    }
+```
+Http Get http://terminal.wss.kfcoding.com/api/v1/pod/{namespace}/{pod-name}/shell/{container-name}
+```
 
 2. websockek连接(sockjs)
 
 ```
-        sock = new SockJS('api/sockjs?' + response.id);
+        sock = new SockJS('http://terminal.wss.kfcoding.com/api/sockjs?' + response.id);
         sock.onopen = function () {
             console.log('open');
             sock.send(JSON.stringify({'Op': 'bind', 'SessionID': response.id}));
