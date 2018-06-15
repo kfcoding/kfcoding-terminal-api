@@ -20,13 +20,12 @@
 
     function getId() {
         $.ajax({
-            "url": "http://terminal.wss.kfcoding.com/api/v1/pod/kfcoding-alpha/shell-demo/shell/nginx",
+            "url": "http://api.kfcoding.com/cloudware/startContainer?imageName=nginx&type=1",
+            //"url": "http://terminal.wss.kfcoding.com/api/v1/pod/kfcoding-alpha/shell-demo/shell/nginx",
             "method": "GET"
         }).done(function (response) {
-
-
-            console.log(response);
-            connectWS(response);
+            console.log(response.result.WsAddr);
+            connectWS(response.result.WsAddr);
         });
     }
 
@@ -35,12 +34,15 @@
         sock.send(JSON.stringify({'Op': 'stdin', 'Data': str}));
     }
 
-    function connectWS(response) {
+    function connectWS(wsaddr) {
+//         response.substring(1, response.length - 1);
+        var token = wsaddr.split("?")[1];
 
-        response.substring(1, response.length - 1);
-        var token = response.split("?")[1];
+        var newwsaddr = "http://120.132.94.141:9090/api/sockjs?" + token;
 
-        sock = new SockJS(response);
+        console.log(newwsaddr);
+
+        sock = new SockJS(newwsaddr);
         sock.onopen = function () {
             console.log('open');
             sock.send(JSON.stringify({'Op': 'bind', 'SessionID': token}));

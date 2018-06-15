@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/websocket-server-shell.iml" filepath="$PROJECT_DIR$/.idea/websocket-server-shell.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/kfcoding-terminal-websocker-server.iml" filepath="$PROJECT_DIR$/.idea/kfcoding-terminal-websocker-server.iml" />
     </modules>
   </component>
 </project>

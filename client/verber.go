@@ -3,8 +3,8 @@ package client
 import (
 	"fmt"
 
-	"github.com/websocket-server-shell/api"
-	clientapi "github.com/websocket-server-shell/client/api"
+	"github.com/terminal-controller/api"
+	clientapi "github.com/terminal-controller/client/api"
 	"k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	restclient "k8s.io/client-go/rest"

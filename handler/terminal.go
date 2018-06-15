@@ -18,7 +18,8 @@ import (
 	"k8s.io/client-go/tools/remotecommand"
 	"sync"
 	"io/ioutil"
-	"github.com/websocket-server-shell/config"
+	"github.com/terminal-controller/config"
+	"time"
 )
 
 // PtyHandler is what remotecommand expects from a pty
@@ -140,11 +141,11 @@ func (t TerminalSession) Close(status uint32, reason string) {
 	delete(terminalSessions, t.id)
 	lock.Unlock()
 
+	log.Print(t.id, " , ", status, ", ", reason)
+
 	// call api to delete container
-	url := config.API_SERVER_ADDR + "/cloudware/deleteContainer"
+	url := config.API_SERVER_ADDR + "/cloudware/deleteContainer?podName=" + t.pod + "&type=1"
 	req, _ := http.NewRequest("DELETE", url, nil)
-	req.Header.Add("podName", t.pod)
-	req.Header.Add("type", "1")
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
@@ -190,12 +191,14 @@ func handleTerminalSession(session sockjs.Session) {
 
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Println(err)
+			fmt.Println("recover", err)
 		}
 	}()
 	terminalSession.bound <- nil
 
 	terminalSessions[msg.SessionID] = terminalSession
+
+	log.Print("new connection : ", msg.SessionID)
 }
 
 // CreateAttachHandler is called from main for /api/sockjs
@@ -209,6 +212,10 @@ func startProcess(k8sClient kubernetes.Interface, cfg *rest.Config, request *res
 	namespace := request.PathParameter("namespace")
 	podName := request.PathParameter("pod")
 	containerName := request.PathParameter("container")
+
+	log.Print("namespace: " + namespace)
+	log.Print("podname: " + podName)
+	log.Print("containerName:" + containerName)
 
 	req := k8sClient.CoreV1().RESTClient().Post().
 		Resource("pods").
@@ -225,19 +232,43 @@ func startProcess(k8sClient kubernetes.Interface, cfg *rest.Config, request *res
 		TTY:       true,
 	}, scheme.ParameterCodec)
 
-	exec, err := remotecommand.NewSPDYExecutor(cfg, "POST", req.URL())
+	var exec remotecommand.Executor
+	var err error
+
+	for i := 0; i < 5; i++ {
+		exec, err = remotecommand.NewSPDYExecutor(cfg, "POST", req.URL())
+		if err != nil {
+			log.Print("sleep, remotecommand.NewSPDYExecutor: ", err)
+			time.Sleep(3 * time.Second)
+		} else {
+			break
+		}
+	}
+
 	if err != nil {
+		log.Print("return, remotecommand.NewSPDYExecutor error: ", err)
 		return err
 	}
 
-	err = exec.Stream(remotecommand.StreamOptions{
-		Stdin:             ptyHandler,
-		Stdout:            ptyHandler,
-		Stderr:            ptyHandler,
-		TerminalSizeQueue: ptyHandler,
-		Tty:               true,
-	})
+	log.Print("before exec.Stream ")
+
+	for i := 0; i < 5; i++ {
+		err = exec.Stream(remotecommand.StreamOptions{
+			Stdin:             ptyHandler,
+			Stdout:            ptyHandler,
+			Stderr:            ptyHandler,
+			TerminalSizeQueue: ptyHandler,
+			Tty:               true,
+		})
+		if err != nil {
+			log.Print("sleep, exec.Stream: ", err)
+			time.Sleep(3 * time.Second)
+		} else {
+			break
+		}
+	}
 	if err != nil {
+		log.Print("return,  exec.Stream: ", err)
 		return err
 	}
 
@@ -279,7 +310,7 @@ func WaitForTerminal(k8sClient kubernetes.Interface, cfg *rest.Config, request *
 		close(terminalSessions[sessionId].bound)
 
 		var err error
-		validShells := []string{"bash", "sh", "powershell", "cmd"}
+		validShells := []string{"cmd", "bash", "sh", "powershell"}
 
 		if isValidShell(validShells, shell) {
 			cmd := []string{shell}
