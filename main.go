@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
-	"github.com/terminal-controller/config"
-	"github.com/terminal-controller/client"
-	"github.com/terminal-controller/handler"
+	"github.com/kfcoding-terminal-controller/config"
+	"github.com/kfcoding-terminal-controller/client"
+	"github.com/kfcoding-terminal-controller/handler"
 )
 
 func main() {
@@ -15,9 +15,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	handler.Init()
+
 	http.Handle("/api/", apiHandler)
 	http.Handle("/api/sockjs/", handler.CreateAttachHandler("/api/sockjs"))
-	http.Handle("/", http.FileServer(http.Dir("/home/wsl/Go/src/github.com/websocket-server-shell/ui/static/")))
+	// http.Handle("/", http.FileServer(http.Dir("/home/wsl/Go/src/github.com/websocket-server-shell/ui/static/")))
 
-	log.Fatal(http.ListenAndServe(config.SERVER_ADDRESS, nil))
+	log.Fatal(http.ListenAndServe(config.ServerAddress, nil))
 }

@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/emicklei/go-restful"
-	authApi "github.com/terminal-controller/auth/api"
-	clientapi "github.com/terminal-controller/client/api"
+	authApi "github.com/kfcoding-terminal-controller/auth/api"
+	clientapi "github.com/kfcoding-terminal-controller/client/api"
 	"k8s.io/api/authorization/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"

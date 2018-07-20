@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/emicklei/go-restful"
-	authApi "github.com/terminal-controller/auth/api"
+	authApi "github.com/kfcoding-terminal-controller/auth/api"
 	"k8s.io/api/authorization/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes"
