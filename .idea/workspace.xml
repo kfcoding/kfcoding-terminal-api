@@ -7,6 +7,8 @@
       <change afterPath="$PROJECT_DIR$/types/types.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/terminal-controller.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kfcoding-terminal-controller.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/apihandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/apihandler.go" afterDir="false" />
@@ -22,44 +24,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="apihandler.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
-              <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="12" />
-              <folding>
-                <element signature="e#17#313#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="306">
+                <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+              </first_editor>
+              <second_editor>
+                <markdownNavigatorState />
+              </second_editor>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.go">
+        <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-              <folding>
-                <element signature="e#14#167#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="container.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/container.go">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/ui/static/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+            <state relative-caret-position="145">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apihandler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/apihandler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-161">
+              <caret line="35" column="61" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="types.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/types/types.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -76,8 +95,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>sleep</find>
-      <find>cManager</find>
       <find>TerminalWaaAddr</find>
+      <find>cMa</find>
+      <find>startProcess</find>
+      <find>cManager</find>
+      <find>Client</find>
+      <find>MSG_DEPLOY_NAMESPACE_MISMATCH_ERROR</find>
+      <find>k8sClient</find>
+      <find>cfg</find>
+      <find>cloudware</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -96,6 +122,19 @@
         <option value="$PROJECT_DIR$/config/config.go" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/handler/apihandler.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/client/manager.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/client/verber.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/client/api/types.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/template/pod.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/config/config.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/types/types.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/handler/terminal.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/handler/container.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/Dockerfile" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/handler/apihandler.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/README.md" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/main.go" />
+        <option value="$PROJECT_DIR$/../kfcoding-terminal-controller/ui/static/index.html" />
       </list>
     </option>
   </component>
@@ -109,8 +148,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="height" value="973" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -121,38 +161,24 @@
         <subPane>
           <expand>
             <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="auth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
               <item name="handler" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="terminal-controller" type="b2602c69:ProjectViewProjectNode" />
-              <item name="terminal-controller" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -183,6 +209,15 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration name="Unnamed" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="kfcoding-terminal-controller" />
+      <working_directory value="$PROJECT_DIR$/../kfcoding-terminal-controller/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/../kfcoding-terminal-controller/main.go" />
+      <package value="github.com/terminal-controller" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="kfcoding-terminal-controller" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -205,14 +240,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.81333333" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18681319" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18769231" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.072820514" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16239317" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -239,21 +275,21 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/handler/terminal.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/terminal.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5372">
           <caret line="336" selection-start-line="336" selection-end-line="336" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/apihandler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1003">
           <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
@@ -263,42 +299,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/manager.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/client/manager.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/terminal.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/terminal.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5372">
           <caret line="336" selection-start-line="336" selection-end-line="336" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/terminal.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/terminal.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5712">
           <caret line="336" lean-forward="true" selection-start-line="336" selection-end-line="336" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/static/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/api/types.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/api/common.go">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../../k8s.io/client-go/kubernetes/clientset.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -331,41 +358,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/types/types.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/pod.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/terminal.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#17#350#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/errors/localizer.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#16#126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/errors/handler.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/errors/handler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
@@ -375,27 +368,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/verber.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/client/verber.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/template/pod.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/client/api/common.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/client/manager.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-539">
+          <caret line="248" column="27" selection-start-line="248" selection-start-column="27" selection-end-line="248" selection-end-column="27" />
           <folding>
-            <element signature="e#16#238#0" expanded="true" />
+            <element signature="e#16#391#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/manager.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/auth/api/common.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/auth/api/types.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/auth/api/types.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
@@ -405,47 +405,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/types.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/auth/api/common.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/api/types.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state relative-caret-position="225">
+          <caret line="183" column="1" lean-forward="true" selection-start-line="183" selection-start-column="1" selection-end-line="183" selection-end-column="1" />
           <folding>
             <element signature="e#13#178#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/client/api/types.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#13#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../k8s.io/client-go/tools/remotecommand/remotecommand.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/errors/localizer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding>
+            <element signature="e#16#126#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/config/config.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/terminal.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="e#14#167#0" expanded="true" />
+            <element signature="e#17#294#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/container.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/container.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        <state relative-caret-position="1241">
+          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+          <folding>
+            <element signature="e#17#350#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="12" />
-          <folding>
-            <element signature="e#17#313#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/types/types.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="306">
+            <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/handler/apihandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-161">
+          <caret line="35" column="61" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../kfcoding-terminal-controller/ui/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>

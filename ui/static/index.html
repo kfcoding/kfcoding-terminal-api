@@ -15,19 +15,20 @@
     var sock;
     $(document).ready(function () {
         input = document.getElementById("output");
-        getId();
+        connectWS("http://106.14.50.7:30084/api/sockjs?fa1e8d0449ff0b48106c18dc9d77a17c")
+        // getId();
     });
 
-    function getId() {
-        $.ajax({
-            "url": "http://api.kfcoding.com/cloudware/startContainer?imageName=nginx&type=1",
-            //"url": "http://terminal.wss.kfcoding.com/api/v1/pod/kfcoding-alpha/shell-demo/shell/nginx",
-            "method": "GET"
-        }).done(function (response) {
-            console.log(response.result.WsAddr);
-            connectWS(response.result.WsAddr);
-        });
-    }
+    // function getId() {
+    //     $.ajax({
+    //         "url": "http://api.kfcoding.com/cloudware/startContainer?imageName=nginx&type=1",
+    //         //"url": "http://terminal.wss.kfcoding.com/api/v1/pod/kfcoding-alpha/shell-demo/shell/nginx",
+    //         "method": "GET"
+    //     }).done(function (response) {
+    //         console.log(response.result.WsAddr);
+    //         connectWS(response.result.WsAddr);
+    //     });
+    // }
 
     function send() {
         var str = document.getElementById('input').value + "\r";
@@ -35,14 +36,9 @@
     }
 
     function connectWS(wsaddr) {
-//         response.substring(1, response.length - 1);
         var token = wsaddr.split("?")[1];
 
-        var newwsaddr = "http://120.132.94.141:9090/api/sockjs?" + token;
-
-        console.log(newwsaddr);
-
-        sock = new SockJS(newwsaddr);
+        sock = new SockJS(wsaddr);
         sock.onopen = function () {
             console.log('open');
             sock.send(JSON.stringify({'Op': 'bind', 'SessionID': token}));

@@ -12,9 +12,7 @@ import (
 	"github.com/emicklei/go-restful"
 	"gopkg.in/igm/sockjs-go.v2/sockjs"
 	"k8s.io/api/core/v1"
-	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
-	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/remotecommand"
 	"sync"
 	"time"
@@ -111,13 +109,6 @@ func (t TerminalSession) Close(status uint32, reason string) {
 	log.Print(t.id, " , ", status, ", ", reason)
 
 	DeleteTerminal(t.pod)
-
-	//url := config.TerminalWaaAddr + "/cloudware/deleteContainer?podName=" + t.pod + "&type=1"
-	//req, _ := http.NewRequest("DELETE", url, nil)
-	//res, _ := http.DefaultClient.Do(req)
-	//defer res.Body.Close()
-	//body, _ := ioutil.ReadAll(res.Body)
-	//fmt.Println(string(body))
 }
 
 var terminalSessions = make(map[string]TerminalSession)
@@ -167,7 +158,7 @@ func CreateAttachHandler(path string) http.Handler {
 	return sockjs.NewHandler(path, sockjs.DefaultOptions, handleTerminalSession)
 }
 
-func startProcess(k8sClient kubernetes.Interface, cfg *rest.Config, request *restful.Request, cmd []string, ptyHandler PtyHandler) error {
+func startProcess(request *restful.Request, cmd []string, ptyHandler PtyHandler) error {
 	namespace := request.PathParameter("namespace")
 	podName := request.PathParameter("pod")
 	containerName := request.PathParameter("container")
@@ -175,8 +166,7 @@ func startProcess(k8sClient kubernetes.Interface, cfg *rest.Config, request *res
 	log.Print("namespace: " + namespace)
 	log.Print("podname: " + podName)
 	log.Print("containerName:" + containerName)
-
-	req := k8sClient.CoreV1().RESTClient().Post().
+	req := K8sClient.CoreV1().RESTClient().Post().
 		Resource("pods").
 		Name(podName).
 		Namespace(namespace).
@@ -195,7 +185,7 @@ func startProcess(k8sClient kubernetes.Interface, cfg *rest.Config, request *res
 	var err error
 
 	for i := 0; i < 5; i++ {
-		exec, err = remotecommand.NewSPDYExecutor(cfg, "POST", req.URL())
+		exec, err = remotecommand.NewSPDYExecutor(Config, "POST", req.URL())
 		if err != nil {
 			log.Print("sleep, remotecommand.NewSPDYExecutor: ", err)
 			time.Sleep(3 * time.Second)
@@ -253,7 +243,7 @@ func isValidShell(validShells []string, shell string) bool {
 	return false
 }
 
-func WaitForTerminal(k8sClient kubernetes.Interface, cfg *rest.Config, request *restful.Request, sessionId string) {
+func WaitForTerminal(request *restful.Request, sessionId string) {
 	shell := request.QueryParameter("shell")
 
 	select {
@@ -266,13 +256,13 @@ func WaitForTerminal(k8sClient kubernetes.Interface, cfg *rest.Config, request *
 
 		if isValidShell(validShells, shell) {
 			cmd := []string{shell}
-			err = startProcess(k8sClient, cfg, request, cmd, terminalSessions[sessionId])
+			err = startProcess(request, cmd, terminalSessions[sessionId])
 		} else {
 			// No shell given or it was not valid: try some shells until one succeeds or all fail
 			// FIXME: if the first shell fails then the first keyboard event is lost
 			for _, testShell := range validShells {
 				cmd := []string{testShell}
-				if err = startProcess(k8sClient, cfg, request, cmd, terminalSessions[sessionId]); err == nil {
+				if err = startProcess(request, cmd, terminalSessions[sessionId]); err == nil {
 					break
 				}
 			}

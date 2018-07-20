@@ -2,28 +2,19 @@ package handler
 
 import (
 	"github.com/kfcoding-terminal-controller/types"
-	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/rest"
 	"log"
-	"k8s.io/client-go/kubernetes/typed/core/v1"
 	"github.com/satori/go.uuid"
 	v12 "k8s.io/api/core/v1"
 	"encoding/json"
 	"github.com/kfcoding-terminal-controller/config"
+	"k8s.io/client-go/kubernetes/typed/core/v1"
+	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/rest"
 	v13 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func CreateTerminal(body *types.TerminalBody) (string, error) {
 	log.Printf("CreateTerminal: %+v\n", body)
-	return createTerminalPod(body)
-}
-
-func DeleteTerminal(name string) (string, error) {
-	log.Print("DeleteTerminal: ", name)
-	return deleteTerminalPod(name)
-}
-
-func createTerminalPod(body *types.TerminalBody) (string, error) {
 	var podBody v12.Pod
 	err := json.Unmarshal([]byte(types.TerminalPod), &podBody)
 	if nil != err {
@@ -36,7 +27,7 @@ func createTerminalPod(body *types.TerminalBody) (string, error) {
 	podBody.Labels["app"] = name
 	podBody.Spec.Containers[0].Image = body.Image
 
-	podInterface.Create(&podBody)
+	PodInterface.Create(&podBody)
 
 	if nil != err {
 		log.Print("createTerminalPod error: ", err)
@@ -49,7 +40,9 @@ func createTerminalPod(body *types.TerminalBody) (string, error) {
 	return name, nil
 }
 
-func deleteTerminalPod(name string) (string, error) {
+func DeleteTerminal(name string) (string, error) {
+	log.Print("DeleteTerminal: ", name)
+
 	racePeriodSeconds := int64(0)
 	var propagationPolicy v13.DeletionPropagation
 	propagationPolicy = "Background"
@@ -62,7 +55,7 @@ func deleteTerminalPod(name string) (string, error) {
 		GracePeriodSeconds: &racePeriodSeconds,
 		PropagationPolicy:  &propagationPolicy,
 	}
-	err := podInterface.Delete(name, options)
+	err := PodInterface.Delete(name, options)
 
 	if nil != err {
 		log.Print("deleteTerminalPod error: ", err)
@@ -74,15 +67,18 @@ func deleteTerminalPod(name string) (string, error) {
 	return "", nil
 }
 
-var podInterface v1.PodInterface
-var serviceInterface v1.ServiceInterface
+var PodInterface v1.PodInterface
+var K8sClient *kubernetes.Clientset
+var Config *rest.Config
 
 func Init() {
 	cfg, err := rest.InClusterConfig()
 	if err != nil {
 		log.Fatal("Could not init in cluster config: ", err.Error())
 	}
-	K8sClient, err := kubernetes.NewForConfig(cfg)
-	podInterface = K8sClient.CoreV1().Pods(config.Namespace)
-	serviceInterface = K8sClient.CoreV1().Services(config.Namespace)
+	k8sClient, err := kubernetes.NewForConfig(cfg)
+
+	K8sClient = k8sClient
+	Config = cfg
+	PodInterface = k8sClient.CoreV1().Pods(config.Namespace)
 }

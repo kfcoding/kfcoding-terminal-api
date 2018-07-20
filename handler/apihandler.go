@@ -3,8 +3,6 @@ package handler
 import (
 	"net/http"
 	"github.com/emicklei/go-restful"
-	clientapi "github.com/kfcoding-terminal-controller/client/api"
-	kdErrors "github.com/kfcoding-terminal-controller/errors"
 	"k8s.io/client-go/tools/remotecommand"
 	"github.com/kfcoding-terminal-controller/config"
 	"log"
@@ -12,14 +10,13 @@ import (
 )
 
 type APIHandler struct {
-	cManager clientapi.ClientManager
 }
 
-func CreateHTTPAPIHandler(cManager clientapi.ClientManager) (http.Handler, error) {
+func CreateHTTPAPIHandler() (http.Handler, error) {
 
 	apiHandler := APIHandler{
-		cManager: cManager,
 	}
+
 	wsContainer := restful.NewContainer()
 	wsContainer.EnableContentEncoding(true)
 
@@ -46,19 +43,8 @@ func (apiHandler *APIHandler) handleExecShell(request *restful.Request, response
 
 	sessionId, err := genTerminalSessionId()
 	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-
-	k8sClient, err := apiHandler.cManager.Client(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
-		return
-	}
-
-	cfg, err := apiHandler.cManager.Config(request)
-	if err != nil {
-		kdErrors.HandleInternalError(response, err)
+		log.Print("handleExecShell error: ", err)
+		response.WriteHeaderAndEntity(http.StatusInternalServerError, types2.ResponseBody{Error: err.Error()})
 		return
 	}
 
@@ -72,7 +58,7 @@ func (apiHandler *APIHandler) handleExecShell(request *restful.Request, response
 	}
 	lock.Unlock()
 
-	go WaitForTerminal(k8sClient, cfg, request, sessionId)
+	go WaitForTerminal(request, sessionId)
 
 	response.Header().Set("Access-Control-Allow-Origin", "*")
 
@@ -86,7 +72,7 @@ func (apiHandler *APIHandler) handleCreateTerminal(request *restful.Request, res
 	if !apiHandler.checkToken(request, response) {
 		return
 	}
-	body := types2.TerminalBody{}
+	body := &types2.TerminalBody{}
 	if err := request.ReadEntity(body); nil != err {
 		log.Print("handleCreateTerminal error: ", err)
 		response.WriteHeaderAndEntity(http.StatusInternalServerError, types2.ResponseBody{Error: err.Error()})
@@ -99,7 +85,7 @@ func (apiHandler *APIHandler) handleCreateTerminal(request *restful.Request, res
 	}
 	log.Printf("handleCreateTerminal: %+v\n", body)
 
-	data, err := CreateTerminal(&body)
+	data, err := CreateTerminal(body)
 
 	if err == nil {
 		response.WriteHeaderAndEntity(http.StatusOK, types2.ResponseBody{Data: data})
