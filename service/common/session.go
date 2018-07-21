@@ -22,7 +22,6 @@ type TerminalMessage struct {
 
 type TerminalSession struct {
 	Id            string
-	Bound         chan error
 	SockJSSession sockjs.Session
 	SizeChan      chan remotecommand.TerminalSize
 	PodName       string

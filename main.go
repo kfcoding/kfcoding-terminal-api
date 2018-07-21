@@ -12,14 +12,24 @@ import (
 
 func main() {
 
+	//k8sClient := common.InitOutClusterK8sClient()
 	k8sClient := common.InitK8sClient()
 
-	var terminalService *service.TerminalService
-	terminalService.EtcdService = service.GetEtcdService(terminalService.Delete)
-	terminalService.K8sService = service.GetK8sService(k8sClient)
-	terminalService.SessionService = service.GetSerssionService(k8sClient, terminalService.Delete)
+	etcdClient := common.GetMyEtcdClient()
+	etcdService := service.GetEtcdService(etcdClient)
+	k8sService := service.GetK8sService(k8sClient)
+	sessionService := service.GetSerssionService(k8sClient)
 
-	go terminalService.EtcdService.WatchSessionId(path.Join(config.KeeperPrefix, config.Version))
+	terminalService := &service.TerminalService{
+		EtcdService:    etcdService,
+		K8sService:     k8sService,
+		SessionService: sessionService,
+	}
+
+	etcdService.SetOnDeleteCallback(terminalService.Delete)
+	sessionService.SetOnCloseCallback(terminalService.Delete)
+
+	go etcdService.WatchSessionId(path.Join(config.KeeperPrefix, config.Version))
 
 	apiHandler, err := handler.CreateHTTPAPIHandler(terminalService)
 	if err != nil {
@@ -27,8 +37,8 @@ func main() {
 	}
 
 	http.Handle("/api/", apiHandler)
-	http.Handle("/api/sockjs/", handler.CreateAttachHandler(terminalService, "/api/sockjs"))
-	http.Handle("/", http.FileServer(http.Dir("/Users/wsl/Go/src/github.com/kfcoding-terminal-controller/ui/static/")))
+	http.Handle("/api/sockjs/", handler.CreateAttachHandler(sessionService, "/api/sockjs"))
+	//http.Handle("/", http.FileServer(http.Dir("/Users/wsl/Go/src/github.com/kfcoding-terminal-controller/ui/static/")))
 
 	log.Println("Start terminal server")
 	log.Fatal(http.ListenAndServe(config.ServerAddress, nil))

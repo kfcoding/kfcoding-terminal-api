@@ -24,9 +24,8 @@ func CreateHTTPAPIHandler(terminalService *service.TerminalService) (http.Handle
 	apiV1Ws.Path("/api/v1").
 		Consumes(restful.MIME_JSON).
 		Produces(restful.MIME_JSON)
-	// http://cloudware.wss.kfcoding.com/api/v1/pod/kfcoding-alpha/{pod}/shell/application
 	apiV1Ws.Route(
-		apiV1Ws.GET("/pod/{namespace}/{pod}/shell/{container}").
+		apiV1Ws.POST("/terminal").
 			To(apiHandler.HandleNewTerminal))
 
 	wsContainer := restful.NewContainer()
@@ -62,28 +61,6 @@ func (apiHandler *APIHandler) HandleNewTerminal(request *restful.Request, respon
 	} else {
 		response.WriteHeaderAndEntity(http.StatusInternalServerError, types2.ResponseBody{Error: err.Error()})
 	}
-
-	//sessionId, err := genTerminalSessionId()
-	//if err != nil {
-	//	log.Print("handleExecShell error: ", err)
-	//	response.WriteHeaderAndEntity(http.StatusInternalServerError, types2.ResponseBody{Error: err.Error()})
-	//	return
-	//}
-	//
-	//podName := request.PathParameter("pod")
-	//lock.Lock()
-	//terminalSessions[sessionId] = TerminalSession{
-	//	id:       sessionId,
-	//	bound:    make(chan error),
-	//	sizeChan: make(chan remotecommand.TerminalSize),
-	//	pod:      podName,
-	//}
-	//lock.Unlock()
-	//
-	//go WaitForTerminal(request, sessionId)
-
-	// http://120.132.94.141:9090/api/sockjs?' + response.id
-	//response.Write([]byte(config.TerminalWaaAddr + "/api/sockjs?" + sessionId))
 }
 
 func (apiHandler *APIHandler) checkToken(request *restful.Request, response *restful.Response) bool {

@@ -24,12 +24,15 @@ type SessionService struct {
 	onClose          OnCloseCallback
 }
 
-func GetSerssionService(k8sClient *common.K8sClient, callback OnCloseCallback) *SessionService {
+func GetSerssionService(k8sClient *common.K8sClient) *SessionService {
 	return &SessionService{
 		terminalSessions: make(map[string]common.TerminalSession),
 		k8sClient:        k8sClient,
-		onClose:          callback,
 	}
+}
+
+func (service *SessionService) SetOnCloseCallback(callback OnCloseCallback) {
+	service.onClose = callback
 }
 
 func (service *SessionService) CreateSession(podName string) (string, error) {
@@ -40,7 +43,6 @@ func (service *SessionService) CreateSession(podName string) (string, error) {
 	}
 	session := common.TerminalSession{
 		Id:        sessionId,
-		Bound:     make(chan error),
 		SizeChan:  make(chan remotecommand.TerminalSize),
 		PodName:   podName,
 		Connected: false,
@@ -86,15 +88,9 @@ func (service *SessionService) HandleTerminalSession(session sockjs.Session) {
 	}
 
 	terminalSession.SockJSSession = session
+	terminalSession.Connected = true
 
 	go service.WaitForTerminal(&terminalSession)
-
-	//defer func() {
-	//	if err := recover(); err != nil {
-	//		fmt.Println("recover", err)
-	//	}
-	//}()
-	//terminalSession.Bound <- nil
 
 	service.terminalSessions[msg.SessionID] = terminalSession
 
@@ -103,12 +99,14 @@ func (service *SessionService) HandleTerminalSession(session sockjs.Session) {
 
 func (service *SessionService) WaitForTerminal(session *common.TerminalSession) {
 	var err error
-	validShells := []string{"bash", "sh", "cmd", "powershell"}
+	validShells := []string{"sh", "bash", "cmd", "powershell"}
 
 	for _, testShell := range validShells {
 		cmd := []string{testShell}
 		if err = service.startProcess(session, cmd); err == nil {
 			break
+		} else {
+			log.Print("err: ", err)
 		}
 	}
 
@@ -125,14 +123,14 @@ func (service *SessionService) startProcess(session *common.TerminalSession, cmd
 
 	log.Print("startProcess: ", session.PodName)
 
-	req := service.k8sClient.K8sClient.CoreV1().RESTClient().Post().
+	req := service.k8sClient.Interface.CoreV1().RESTClient().Post().
 		Resource("pods").
 		Name(session.PodName).
 		Namespace(config.Namespace).
 		SubResource("exec")
 
 	req.VersionedParams(&v1.PodExecOptions{
-		Container: "Application",
+		Container: "application",
 		Command:   cmd,
 		Stdin:     true,
 		Stdout:    true,
@@ -143,22 +141,21 @@ func (service *SessionService) startProcess(session *common.TerminalSession, cmd
 	var exec remotecommand.Executor
 	var err error
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 7; i++ {
 		exec, err = remotecommand.NewSPDYExecutor(service.k8sClient.Config, "POST", req.URL())
 		if err != nil {
-			log.Print("startProcess sleep, remotecommand.NewSPDYExecutor: ", err)
-			time.Sleep(3 * time.Second)
+			//log.Print("startProcess sleep, remotecommand.NewSPDYExecutor: ", err)
+			time.Sleep(1 * time.Second)
 		} else {
 			break
 		}
 	}
-
 	if err != nil {
 		log.Print("startProcess return, remotecommand.NewSPDYExecutor error: ", err)
 		return err
 	}
 
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 7; i++ {
 		err = exec.Stream(remotecommand.StreamOptions{
 			Stdin:             session,
 			Stdout:            session,
@@ -167,8 +164,8 @@ func (service *SessionService) startProcess(session *common.TerminalSession, cmd
 			Tty:               true,
 		})
 		if err != nil {
-			log.Print("startProcess sleep, : exec.Stream", err)
-			time.Sleep(3 * time.Second)
+			//log.Print("startProcess sleep, : exec.Stream error: ", err)
+			time.Sleep(1 * time.Second)
 		} else {
 			break
 		}

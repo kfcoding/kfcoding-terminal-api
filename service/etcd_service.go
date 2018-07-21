@@ -15,11 +15,14 @@ type EtcdService struct {
 	onDelete     OnCloseCallback
 }
 
-func GetEtcdService(callback OnCloseCallback) *EtcdService {
+func GetEtcdService(myEtcdClient *common.MyEtcdClient) *EtcdService {
 	return &EtcdService{
-		myEtcdClient: common.GetMyEtcdClient(),
-		onDelete:     callback,
+		myEtcdClient: myEtcdClient,
 	}
+}
+
+func (service *EtcdService) SetOnDeleteCallback(callback OnCloseCallback) {
+	service.onDelete = callback
 }
 
 func (service *EtcdService) PutSessionId(sessionId string) error {

@@ -6,6 +6,6 @@ import (
 	"github.com/kfcoding-terminal-controller/service"
 )
 
-func CreateAttachHandler(service *service.TerminalService, path string) http.Handler {
-	return sockjs.NewHandler(path, sockjs.DefaultOptions, service.SessionService.HandleTerminalSession)
+func CreateAttachHandler(service *service.SessionService, path string) http.Handler {
+	return sockjs.NewHandler(path, sockjs.DefaultOptions, service.HandleTerminalSession)
 }

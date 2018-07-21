@@ -4,6 +4,9 @@ import (
 	"github.com/kfcoding-terminal-controller/types"
 	"github.com/shortid"
 	"github.com/kfcoding-terminal-controller/config"
+	"log"
+	"strings"
+	"github.com/satori/go.uuid"
 )
 
 type TerminalService struct {
@@ -14,8 +17,8 @@ type TerminalService struct {
 
 func (service *TerminalService) Create(body *types.TerminalBody) (string, error) {
 
-	hostname := shortid.MustGenerate()
-	podName := "terminal-" + hostname
+	hostname := strings.Replace(strings.ToLower(shortid.MustGenerate()), "-", "aa", -1)
+	podName := "terminal-" + uuid.Must(uuid.NewV4()).String()
 
 	sessionId, err := service.SessionService.CreateSession(podName)
 	if nil != err {
@@ -39,6 +42,7 @@ func (service *TerminalService) Create(body *types.TerminalBody) (string, error)
 func (service *TerminalService) Delete(sessionId string, source int) {
 	session, ok := service.SessionService.terminalSessions[sessionId]
 	if source == config.SourceEtcd { // etcd删除回调
+		log.Print("Delete ok = ", ok, " session.Connected = ", session.Connected)
 		if ok && !session.Connected { //如果session存在且没有被连接
 			service.K8sService.DeleteTerminal(session.PodName)
 			service.SessionService.DeleteSession(sessionId)

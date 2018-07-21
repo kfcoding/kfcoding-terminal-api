@@ -33,13 +33,13 @@ func (service *K8sService) CreateTerminal(body *types.TerminalBody, hostname, po
 	podBody.Spec.Containers[0].Image = body.Image
 	podBody.Spec.Hostname = hostname
 
-	service.k8sClient.PodInterface.Create(&podBody)
+	_, err = service.k8sClient.PodInterface.Create(&podBody)
 
 	if nil != err {
 		log.Print("createTerminalPod error: ", err)
 		return err
 	} else {
-		log.Printf("createTerminalPod ok")
+		log.Print("createTerminalPod ok")
 		return nil
 	}
 }
