@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09795796-0be0-42c5-8cd3-311dbe555a98" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/service/common/k8s_out_cluster.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup/container.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backup/terminal.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/apihandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/apihandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/sockjshandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/sockjshandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller" beforeDir="false" afterPath="$PROJECT_DIR$/controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/common/k8s.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/common/k8s.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/common/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/common/session.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/etcd_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/etcd_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/k8s_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/k8s_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/session_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/session_service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/terminal_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/terminal_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ui/static/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,82 +16,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="session_service.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/session_service.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="166" column="14" selection-start-line="166" selection-start-column="14" selection-end-line="166" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="187">
-                <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="89" />
-              </first_editor>
-              <second_editor>
-                <markdownNavigatorState />
-              </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apihandler.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="42" column="18" lean-forward="true" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sockjshandler.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/sockjshandler.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="646">
+              <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
               <folding>
-                <element signature="e#17#126#0" expanded="true" />
+                <element signature="e#14#261#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="etcd_service.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/etcd_service.go">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ui/static/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="240">
+              <caret line="17" column="102" selection-start-line="17" selection-start-column="102" selection-end-line="17" selection-end-column="102" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="k8s_service.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/k8s_service.go">
+      <file leaf-file-name="etcd.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/common/etcd.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+            <state relative-caret-position="-436">
+              <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="terminal_service.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/terminal_service.go">
+      <file leaf-file-name="config.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="19" column="81" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+            <state relative-caret-position="-177">
+              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -116,11 +64,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="types.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/types/types.go">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="306">
+                <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+              </first_editor>
+              <second_editor>
+                <markdownNavigatorState />
+              </second_editor>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apihandler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            <state relative-caret-position="155">
+              <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -166,7 +128,6 @@
         <option value="$PROJECT_DIR$/template/pod.go" />
         <option value="$PROJECT_DIR$/types/types.go" />
         <option value="$PROJECT_DIR$/Dockerfile" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/service/k8sapi.go" />
         <option value="$PROJECT_DIR$/service/connection.go" />
         <option value="$PROJECT_DIR$/service/k8sclient.go" />
@@ -190,15 +151,16 @@
         <option value="$PROJECT_DIR$/service/k8s_service.go" />
         <option value="$PROJECT_DIR$/handler/sockjshandler.go" />
         <option value="$PROJECT_DIR$/service/common/k8s.go" />
-        <option value="$PROJECT_DIR$/ui/static/index.html" />
         <option value="$PROJECT_DIR$/service/common/session.go" />
         <option value="$PROJECT_DIR$/service/terminal_service.go" />
         <option value="$PROJECT_DIR$/service/session_service.go" />
         <option value="$PROJECT_DIR$/handler/apihandler.go" />
         <option value="$PROJECT_DIR$/config/config.go" />
         <option value="$PROJECT_DIR$/config/config.go" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/ui/static/index.html" />
       </list>
     </option>
   </component>
@@ -229,6 +191,38 @@
             <path>
               <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
               <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kfcoding-terminal-controller" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kfcoding-terminal-controller" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -315,6 +309,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16605617" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -322,10 +317,10 @@
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4851282" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21435897" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.52102566" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.30153847" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -486,13 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/common/etcd.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/service/common/k8s.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
@@ -500,13 +488,6 @@
           <folding>
             <element signature="e#16#184#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -527,24 +508,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="42" column="18" lean-forward="true" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/sockjshandler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#17#126#0" expanded="true" />
           </folding>
@@ -593,22 +560,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
+    <entry file="file://$PROJECT_DIR$/config/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        <state relative-caret-position="-177">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/common/etcd.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-436">
+          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/apihandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="187">
-            <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="89" />
+          <first_editor relative-caret-position="306">
+            <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
           </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="e#14#261#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="102" selection-start-line="17" selection-start-column="102" selection-end-line="17" selection-end-column="102" />
         </state>
       </provider>
     </entry>

@@ -12,8 +12,10 @@ import (
 
 func main() {
 
-	//k8sClient := common.InitOutClusterK8sClient()
-	k8sClient := common.InitK8sClient()
+	config.InitEnv()
+
+	k8sClient := common.InitOutClusterK8sClient()
+	//k8sClient := common.InitK8sClient()
 
 	etcdClient := common.GetMyEtcdClient()
 	etcdService := service.GetEtcdService(etcdClient)
@@ -38,7 +40,7 @@ func main() {
 
 	http.Handle("/api/", apiHandler)
 	http.Handle("/api/sockjs/", handler.CreateAttachHandler(sessionService, "/api/sockjs"))
-	//http.Handle("/", http.FileServer(http.Dir("/Users/wsl/Go/src/github.com/kfcoding-terminal-controller/ui/static/")))
+	http.Handle("/", http.FileServer(http.Dir("/Users/wsl/Go/src/github.com/kfcoding-terminal-controller/ui/static/")))
 
 	log.Println("Start terminal server")
 	log.Fatal(http.ListenAndServe(config.ServerAddress, nil))
