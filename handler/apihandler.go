@@ -31,10 +31,19 @@ func CreateHTTPAPIHandler(terminalService *service.TerminalService) (http.Handle
 	wsContainer := restful.NewContainer()
 	wsContainer.EnableContentEncoding(true)
 	wsContainer.Add(apiV1Ws)
+
+	cors := restful.CrossOriginResourceSharing{
+		AllowedMethods: []string{"POST", "OPTIONS", "GET"},
+		AllowedHeaders: []string{"Authorization", "Content-Type", "Accept", "Token"},
+		CookiesAllowed: false,
+		Container:      wsContainer}
+	wsContainer.Filter(cors.Filter)
+
 	return wsContainer, nil
 }
 
 func (apiHandler *APIHandler) HandleNewTerminal(request *restful.Request, response *restful.Response) {
+
 	if !apiHandler.checkToken(request, response) {
 		return
 	}
@@ -54,6 +63,8 @@ func (apiHandler *APIHandler) HandleNewTerminal(request *restful.Request, respon
 	sessionId, err := apiHandler.terminalService.Create(body)
 
 	response.Header().Set("Access-Control-Allow-Origin", "*")
+	response.Header().Set("Access-Control-Allow-Methods", "GET")
+
 	if err == nil {
 		// http://120.132.94.141:9090/api/sockjs?' + response.id
 		log.Print("HandleNewTerminal ok: ", config.TerminalWaaAddr+"/api/sockjs?"+sessionId)

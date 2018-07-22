@@ -10,10 +10,10 @@ import (
 
 var (
 	Version         = "v1"
-	Token           = "kfcoding"
+	Token           = ""
 	Namespace       = "kfcoding-alpha"
 	ServerAddress   = "0.0.0.0:8080"
-	TerminalWaaAddr = "http://controller.terminal.kfcoding.com"
+	TerminalWaaAddr = "http://192.168.200.179:8080"
 )
 
 var (
@@ -22,9 +22,9 @@ var (
 )
 
 var (
-	EtcdEndPoints  = []string{"http://localhost:2379"}
-	EtcdUsername   = ""
-	EtcdPassword   = ""
+	EtcdEndPoints  = []string{"http://192.168.200.179:2379"}
+	EtcdUsername   = "root"
+	EtcdPassword   = "kfcoding"
 	RequestTimeout = 10 * time.Second
 )
 

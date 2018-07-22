@@ -15,16 +15,15 @@
     var sock;
     $(document).ready(function () {
         input = document.getElementById("output");
-        connectWS("http://controller.terminal.kfcoding.com/api/sockjs?25bad13e0b528b6b2d76ac3895e7c7be")
-        //getId();
+        //connectWS("http://controller.terminal.kfcoding.com/api/sockjs?25bad13e0b528b6b2d76ac3895e7c7be")
+        getId();
     });
 
     function getId() {
 
         var settings = {
             "async": true,
-            "crossDomain": true,
-            "url": "http://controller.terminal.kfcoding.com/api/v1/terminal",
+            "url": "http://192.168.200.179:8080/api/v1/terminal",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json",

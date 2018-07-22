@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 	"github.com/kfcoding-terminal-controller/config"
-	"github.com/kfcoding-terminal-controller/handler"
-	"github.com/kfcoding-terminal-controller/service"
 	"github.com/kfcoding-terminal-controller/service/common"
+	"github.com/kfcoding-terminal-controller/service"
 	"path"
+	"github.com/kfcoding-terminal-controller/handler"
 )
 
 func main() {
