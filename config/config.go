@@ -9,11 +9,12 @@ import (
 )
 
 var (
+	InCluster       = ""
 	Version         = "v1"
 	Token           = ""
 	Namespace       = "kfcoding-alpha"
 	ServerAddress   = "0.0.0.0:8080"
-	TerminalWaaAddr = "http://192.168.200.179:8080"
+	TerminalWaaAddr = "http://controller.terminal.kfcoding.com"
 )
 
 var (
@@ -22,9 +23,9 @@ var (
 )
 
 var (
-	EtcdEndPoints  = []string{"http://192.168.200.179:2379"}
-	EtcdUsername   = "root"
-	EtcdPassword   = "kfcoding"
+	EtcdEndPoints  = []string{"http://localhost:2379"}
+	EtcdUsername   = ""
+	EtcdPassword   = ""
 	RequestTimeout = 10 * time.Second
 )
 
@@ -35,6 +36,9 @@ const (
 
 func InitEnv() {
 
+	if inCluster := os.Getenv("InCluster"); inCluster != "" {
+		InCluster = inCluster
+	}
 	if version := os.Getenv("Version"); version != "" {
 		Version = version
 	}
@@ -74,6 +78,7 @@ func InitEnv() {
 		KeeperPrefix = keeperPrefix
 	}
 
+	log.Print("InCluster:        ", InCluster)
 	log.Print("Version:          ", Version)
 	log.Print("Token:            ", Token)
 	log.Print("Namespace:        ", Namespace)

@@ -14,6 +14,6 @@ cd src/github.com/kfcoding-terminal-controller/ && go build -o controller main.g
 scp controller root@worker:/home/kfcoding-terminal-controller
 
 cd /home/kfcoding-terminal-controller && \
-docker build -t daocloud.io/shaoling/kfcoding-terminal-controller:v1.3 .
+docker build -t daocloud.io/shaoling/kfcoding-terminal-controller:v1.7 .
 
 ```

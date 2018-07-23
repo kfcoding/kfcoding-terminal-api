@@ -14,7 +14,7 @@ type K8sClient struct {
 	PodInterface v1.PodInterface
 }
 
-func InitK8sClient() *K8sClient {
+func InitInClusterK8sClient() *K8sClient {
 	cfg, err := rest.InClusterConfig()
 	if err != nil {
 		log.Fatal("Could not init in cluster config: ", err.Error())

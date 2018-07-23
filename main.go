@@ -13,9 +13,12 @@ import (
 func main() {
 
 	config.InitEnv()
-
-	k8sClient := common.InitOutClusterK8sClient()
-	//k8sClient := common.InitK8sClient()
+	var k8sClient *common.K8sClient
+	if config.InCluster != "" {
+		k8sClient = common.InitInClusterK8sClient()
+	} else {
+		k8sClient = common.InitOutClusterK8sClient()
+	}
 
 	etcdClient := common.GetMyEtcdClient()
 	etcdService := service.GetEtcdService(etcdClient)
