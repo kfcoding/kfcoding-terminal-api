@@ -18,6 +18,7 @@ type TerminalService struct {
 func (service *TerminalService) Create(body *types.TerminalBody) (string, error) {
 
 	hostname := strings.Replace(strings.ToLower(shortid.MustGenerate()), "-", "aa", -1)
+	hostname = strings.Replace(hostname, "_", "bb", -1)
 	podName := "terminal-" + uuid.Must(uuid.NewV4()).String()
 
 	sessionId, err := service.SessionService.CreateSession(podName)
