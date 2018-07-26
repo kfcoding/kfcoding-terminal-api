@@ -42,7 +42,7 @@ Response
         Error:""
     }
 Image:  要启动的容器镜像名称
-Date:   Websocket地址
+Data:   Websocket地址
 ```
 
 3. Websocket(sockjs)连接
